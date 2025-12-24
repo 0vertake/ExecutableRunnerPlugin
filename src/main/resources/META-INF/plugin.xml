@@ -1,31 +1,44 @@
-<!-- Plugin Configuration File: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN, cannot be changed between the plugin versions. -->
-    <id>com.milos.executable-runner</id>
+    <id>com.milos.executablerunner</id>
+    <name>Executable Runner</name>
+    <vendor url="https://github.com/0vertake/ExecutableRunnerPlugin">Milos</vendor>
 
-    <!-- Public plugin name should be written in Title Case.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
-    <name>Executable-runner</name>
-
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
-
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
+    A simple Run/Debug Configuration plugin for running custom executables.
+
+    <h3>Features:</h3>
+    <ul>
+        <li>Run predefined executables: Rust Compiler (rustc) and Cargo</li>
+        <li>Run any custom executable from your filesystem</li>
+        <li>Pass command line arguments to executables</li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ol>
+        <li>Go to Run - Edit Configurations</li>
+        <li>Click the + button and select "Executable Runner"</li>
+        <li>Choose an executable type or browse for a custom executable</li>
+        <li>Add any command line arguments</li>
+        <li>Run your configuration</li>
+    </ol>
     ]]></description>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <change-notes><![CDATA[
+    <h3>1.0.0</h3>
+    <ul>
+        <li>Initial release</li>
+        <li>Support for Rust Compiler (rustc) and Cargo executables</li>
+        <li>Support for custom executables</li>
+        <li>Command line arguments support</li>
+    </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="241"/>
+
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyMessageBundle</resource-bundle>
-    <!-- Extensions defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="MyToolWindow" factoryClass="com.milos.executablerunner.MyToolWindowFactory"
-                    icon="AllIcons.Toolwindows.ToolWindowPalette"/>
+        <configurationType
+                implementation="com.milos.executablerunner.ExecutableRunConfigurationType"/>
     </extensions>
 </idea-plugin>
